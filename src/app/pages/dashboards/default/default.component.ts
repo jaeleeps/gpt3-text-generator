@@ -53,9 +53,6 @@ export class DefaultComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    setTimeout(() => {
-      this.openModal();
-    }, 2000);
   }
 
   /**
@@ -73,7 +70,6 @@ export class DefaultComponent implements OnInit {
   }
 
   openModal() {
-    this.modalService.open(this.content, { centered: true });
   }
 
   weeklyreport() {
