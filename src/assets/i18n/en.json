@@ -66,6 +66,15 @@
     }
   },
   "MENUITEMS": {
+    "TEXT_GENERATOR": {
+      "TEXT": "Text Generator"
+    },
+    "TEXT_GENERATOR_PROMPT": {
+      "TEXT": "Prompt"
+    },
+    "TEXT_GENERATOR_ARCHIVE": {
+      "TEXT": "Archive"
+    },
     "MENU": {
       "TEXT": "Menu"
     },
