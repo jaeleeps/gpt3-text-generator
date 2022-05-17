@@ -23,6 +23,7 @@ import { LightboxModule } from "ngx-lightbox";
 import { PromptComponent } from "./prompt/prompt.component";
 import { TextGeneratorRoutingModule } from "./text-generator-routing.module";
 import { NgSelectModule } from "@ng-select/ng-select";
+import { Ng5SliderModule } from "ng5-slider";
 
 @NgModule({
   declarations: [PromptComponent],
@@ -51,6 +52,7 @@ import { NgSelectModule } from "@ng-select/ng-select";
 
     TextGeneratorRoutingModule,
     NgSelectModule,
+    Ng5SliderModule,
   ],
 })
 export class TextGeneratorModule {}
