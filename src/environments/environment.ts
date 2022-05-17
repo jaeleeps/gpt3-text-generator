@@ -2,8 +2,6 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-import { GPT3_API_KEY } from "../../env";
-
 export const environment = {
   production: false,
   defaultauth: "fackbackend",
@@ -17,7 +15,7 @@ export const environment = {
     appId: "",
     measurementId: "",
   },
-  gpt3_api_key: GPT3_API_KEY,
+  gpt3_api_key: "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",
 };
 
 /*
