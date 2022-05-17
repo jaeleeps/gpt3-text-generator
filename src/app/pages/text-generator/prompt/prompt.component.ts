@@ -4,7 +4,9 @@ import { GPT3_ENGINES } from "../text-generator.data";
 import {
   GPT3EngineInterface,
   TextGeneratorPromptRequestInferface,
+  TextGeneratorPromptResponseInferface,
 } from "../text-generator.model";
+import { TextGeneratorRequestService } from "../services/text-generator-request.service";
 
 @Component({
   selector: "app-prompt",
@@ -22,7 +24,6 @@ export class PromptComponent implements OnInit {
 
   requestData: TextGeneratorPromptRequestInferface = {
     prompt: null,
-    engine: null,
     temperature: null,
     max_tokens: null,
     top_p: null,
@@ -32,8 +33,12 @@ export class PromptComponent implements OnInit {
 
   public engines: Array<GPT3EngineInterface>;
   private _selectedEngine: GPT3EngineInterface;
+  private _responseList = [];
 
-  constructor(public formBuilder: FormBuilder) {}
+  constructor(
+    public formBuilder: FormBuilder,
+    public textGeneratorRequestService: TextGeneratorRequestService
+  ) {}
 
   ngOnInit(): void {
     this.engines = GPT3_ENGINES;
@@ -45,6 +50,10 @@ export class PromptComponent implements OnInit {
     this.promptValidationForm = this.formBuilder.group({
       textarea: ["", [Validators.required]],
       engine: ["", [Validators.required]],
+    });
+
+    this.promptValidationForm.get("textarea").valueChanges.subscribe((val) => {
+      this.data.prompt = val;
     });
   }
 
@@ -70,15 +79,39 @@ export class PromptComponent implements OnInit {
     return this.requestData;
   }
 
+  get list() {
+    return this._responseList;
+  }
+
   submitPrompt() {
     this.promptSubmit = true;
     if (this.promptValidationForm.status === "VALID") {
-      console.log(this.data);
-      // TODO: handle request
+      this.textGeneratorRequestService
+        .getGPT3CompletionResponse(this.selectedEngine.name, this.data)
+        .toPromise()
+        .then((res: TextGeneratorPromptResponseInferface) => {
+          if (res) {
+            this.addResponse(this.selectedEngine.name, this.data, res);
+          } else {
+            // TODO: ERR HANDLING
+          }
+        });
     }
   }
 
   onChangeEngine(val: GPT3EngineInterface) {
     this.selectedEngine = val;
+  }
+
+  addResponse(
+    engine: string,
+    requestData: TextGeneratorPromptRequestInferface,
+    responseData: TextGeneratorPromptResponseInferface
+  ): void {
+    this.list.push({
+      engine,
+      requestData,
+      responseData,
+    });
   }
 }

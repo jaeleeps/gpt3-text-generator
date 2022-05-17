@@ -27,10 +27,32 @@ export interface GPT3EngineInterface {
 
 export interface TextGeneratorPromptRequestInferface {
   prompt: string;
-  engine: string;
   temperature: number;
   max_tokens: number;
   top_p: number;
   frequency_penalty: number;
   presence_penalty: number;
+}
+
+/**
+ * {
+ *       "text": "\n\nThis is a test",
+ *       "index": 0,
+ *       "logprobs": null,
+ *       "finish_reason": "length"
+ *     }
+ */
+export interface TextGeneratorChoiceInterface {
+  text: string;
+  index: number;
+  logprobs: any;
+  finish_reason: string;
+}
+
+export interface TextGeneratorPromptResponseInferface {
+  created: number; // 1652792314
+  id: string; // "cmpl-58r4UCfoJ3iJzXRC8Y2fkTD5lCgOC"
+  model: string; // "text-curie-001"
+  object: string; //"text_completion"
+  choices: TextGeneratorChoiceInterface[];
 }

@@ -106,6 +106,29 @@
             Responses Description
           </p>
         </div>
+
+        <div>
+          <div class="card bg-success text-white-50" *ngFor="let item of list">
+            <div class="card-body">
+              <h5 class="mt-0 mb-4 text-white">
+                <i class="mdi mdi-check-all mr-3"></i> {{ item.engine }}
+              </h5>
+              <div class="card-body">
+                <h5 class="card-title text-white mt-0">Prompt:</h5>
+                <p class="card-text">{{ item.requestData.prompt }}</p>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title text-white mt-0">Response:</h5>
+                <p class="card-text" *ngIf="item.responseData.choices">
+                  <ng-container *ngFor="let choice of item.responseData.choices">
+                    {{ choice.text }}
+                  </ng-container>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
