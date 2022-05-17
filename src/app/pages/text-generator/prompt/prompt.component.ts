@@ -36,7 +36,6 @@ export class PromptComponent implements OnInit {
   constructor(public formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
-    console.log(GPT3_ENGINES);
     this.engines = GPT3_ENGINES;
     this.breadCrumbItems = [
       { label: "Text Generator" },
