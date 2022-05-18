@@ -8,6 +8,7 @@ import {
 } from "../text-generator.model";
 import { TextGeneratorRequestService } from "../services/text-generator-request.service";
 import { AlertService } from "../alert.service";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: "app-prompt",
@@ -57,6 +58,9 @@ export class PromptComponent implements OnInit {
     this.promptValidationForm.get("textarea").valueChanges.subscribe((val) => {
       this.data.prompt = val;
     });
+
+    console.log("$ENV", $ENV)
+    console.log('environment.gpt3_api_key', environment.gpt3_api_key)
   }
 
   get form() {
