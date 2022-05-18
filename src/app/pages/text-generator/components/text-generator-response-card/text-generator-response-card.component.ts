@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { Clipboard } from "@angular/cdk/clipboard";
 import { TextGeneratorCompletionInterface } from "../../text-generator.model";
 import { AlertService } from "../../alert.service";
+import { LocalStorageService } from "../../local-storage.service";
 
 @Component({
   selector: "app-text-generator-response-card",
@@ -24,7 +25,11 @@ export class TextGeneratorResponseCardComponent implements OnInit {
 
   isArchived: boolean = false;
 
-  constructor(private clipboard: Clipboard, private alert: AlertService) {}
+  constructor(
+    private clipboard: Clipboard,
+    private alert: AlertService,
+    private localStorageService: LocalStorageService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -47,6 +52,7 @@ export class TextGeneratorResponseCardComponent implements OnInit {
     if (this.isArchived) {
       return;
     }
+    this.localStorageService.appendItem(this.data);
     this.isArchived = true;
     this.alert.timer("Item Archived!", null, "success");
   }

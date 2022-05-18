@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { LocalStorageService } from "../local-storage.service";
+import { AlertService } from "../alert.service";
 
 @Component({
-  selector: 'app-archive',
-  templateUrl: './archive.component.html',
-  styleUrls: ['./archive.component.scss']
+  selector: "app-archive",
+  templateUrl: "./archive.component.html",
+  styleUrls: ["./archive.component.scss"],
 })
 export class ArchiveComponent implements OnInit {
   // bread crumb items
   breadCrumbItems: Array<{}>;
 
-  constructor() { }
+  responseList = [];
+
+  constructor(
+    private alert: AlertService,
+    private localStorageService: LocalStorageService
+  ) {}
 
   ngOnInit(): void {
     this.breadCrumbItems = [
@@ -18,4 +25,7 @@ export class ArchiveComponent implements OnInit {
     ];
   }
 
+  get observableList() {
+    return this.localStorageService.observableList;
+  }
 }
