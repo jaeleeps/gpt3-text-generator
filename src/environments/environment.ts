@@ -11,5 +11,5 @@ export const environment = {
     appId: "",
     measurementId: "",
   },
-  gpt3_api_key: "",
+  gpt3_api_key: $ENV.GPT3_API_KEY,
 };

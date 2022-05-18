@@ -47,3 +47,4 @@ testem.log
 Thumbs.db
 /.angular/
 !/src/environments/environment.local.ts
+!/.env
