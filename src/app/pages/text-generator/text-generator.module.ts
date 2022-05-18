@@ -12,9 +12,7 @@ import { PagesRoutingModule } from "../pages-routing.module";
 import { NgApexchartsModule } from "ng-apexcharts";
 import { UiModule } from "../ui/ui.module";
 import { FormModule } from "../form/form.module";
-import { TablesModule } from "../tables/tables.module";
 import { IconsModule } from "../icons/icons.module";
-import { ChartModule } from "../chart/chart.module";
 import { WidgetModule } from "../../shared/widget/widget.module";
 import { UIModule } from "../../shared/ui/ui.module";
 import { HttpClientModule } from "@angular/common/http";
@@ -45,9 +43,7 @@ import { TextGeneratorArchiveCardComponent } from './components/text-generator-a
     UIModule,
     UiModule,
     FormModule,
-    TablesModule,
     IconsModule,
-    ChartModule,
     WidgetModule,
     NgbNavModule,
     NgbTooltipModule,
