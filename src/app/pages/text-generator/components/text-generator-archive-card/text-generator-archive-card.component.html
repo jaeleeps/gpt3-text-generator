@@ -1,10 +1,32 @@
 <div class="card">
-  <div class="card-header bg-transparent border-bottom ">
-    {{ data.engine }}
+  <div class="card-header bg-transparent border-bottom d-flex align-items-center justify-content-between">
+    <div>{{ data.engine }}</div>
+    <div>
+      <div class="dropdown" ngbDropdown>
+        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton"
+                ngbDropdownToggle>
+          <p class="text-muted mb-0">
+            <span *ngFor="let _ of [].constructor(this.data.rating)" class="bx bx-star text-warning"></span>
+            <span *ngFor="let _ of [].constructor(5 - this.data.rating)" class="bx bx-star"></span>
+          </p>
+        </button>
+        <div class="dropdown-menu" ngbDropdownMenu>
+          <ng-container *ngFor="let rating of [0,1,2,3,4,5]">
+            <a class="dropdown-item" href="javascript: void(0);">
+              <p class="text-muted mb-0" (click)="onClickUpdateRating(rating)">
+                <span *ngFor="let _ of [].constructor(rating)" class="bx bx-star text-warning"></span>
+                <span *ngFor="let _ of [].constructor(5 - rating)" class="bx bx-star"></span>
+              </p>
+            </a>
+          </ng-container>
+        </div>
+      </div>
+
+    </div>
   </div>
 
   <div class="card-body">
-    
+
     <blockquote class="card-blockquote mb-0">
       <div class="d-flex align-items-center justify-content-between">
         <h5 class="mt-0">Prompt:</h5>
@@ -18,7 +40,7 @@
 
     <blockquote *ngIf="data?.res?.choices && data?.res?.choices[0]" class="card-blockquote mb-0">
       <div class="d-flex align-items-center justify-content-between">
-        <h5 class="mt-0">Responses:</h5>
+        <h5 class="mt-0">Response:</h5>
         <h5 class="mt-0"><i class="mdi mdi-content-copy mr-3"
                             (click)="onClickCopy(data?.res?.choices[0].text)"></i></h5>
       </div>

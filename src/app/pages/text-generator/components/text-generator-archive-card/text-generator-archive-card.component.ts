@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import { Clipboard } from "@angular/cdk/clipboard";
 import { AlertService } from "../../alert.service";
 import { LocalStorageService } from "../../local-storage.service";
-import { TextGeneratorCompletionInterface } from "../../text-generator.model";
+import { TextGeneratorCompletionArchivedItemInterface } from "../../text-generator.model";
 
 @Component({
   selector: "app-text-generator-archive-card",
@@ -10,16 +10,16 @@ import { TextGeneratorCompletionInterface } from "../../text-generator.model";
   styleUrls: ["./text-generator-archive-card.component.scss"],
 })
 export class TextGeneratorArchiveCardComponent implements OnInit {
-  get data(): TextGeneratorCompletionInterface {
+  get data(): TextGeneratorCompletionArchivedItemInterface {
     return this._data;
   }
 
   @Input()
-  set data(value: TextGeneratorCompletionInterface) {
+  set data(value: TextGeneratorCompletionArchivedItemInterface) {
     this._data = value;
   }
 
-  private _data: TextGeneratorCompletionInterface;
+  private _data: TextGeneratorCompletionArchivedItemInterface;
 
   isArchived: boolean = true;
 
@@ -54,5 +54,11 @@ export class TextGeneratorArchiveCardComponent implements OnInit {
     this.localStorageService.removeItem(id);
     this.isArchived = false;
     this.alert.timer("Item Removed!", null, "success");
+  }
+
+  onClickUpdateRating(rating: number): void {
+    this.data.rating = rating;
+    const id: string = this.data.res.id;
+    this.localStorageService.updateItem(id, this.data);
   }
 }

@@ -62,4 +62,23 @@ export class LocalStorageService {
       // TODO: handle err
     }
   }
+
+  updateItem(
+    id: string,
+    data: TextGeneratorCompletionArchivedItemInterface
+  ): void {
+    try {
+      window.localStorage.removeItem(id);
+      localStorage.setItem(id, JSON.stringify(data));
+      this._entries = this._entries.map(
+        (item: TextGeneratorCompletionArchivedItemInterface, index) => {
+          return item.res.id === id ? data : item;
+        }
+      );
+      this.synchonizeList();
+      console.log(this._entries);
+    } catch (e) {
+      // TODO: handle err
+    }
+  }
 }
