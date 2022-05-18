@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { LocalStorageService } from "../local-storage.service";
 import { AlertService } from "../alert.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-archive",
@@ -15,7 +16,8 @@ export class ArchiveComponent implements OnInit {
 
   constructor(
     private alert: AlertService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -27,5 +29,9 @@ export class ArchiveComponent implements OnInit {
 
   get observableList() {
     return this.localStorageService.observableList;
+  }
+
+  onClickEmptyListCard(): void {
+    this.router.navigateByUrl("text-generator/prompt");
   }
 }
