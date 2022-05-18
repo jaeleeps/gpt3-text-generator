@@ -89,4 +89,92 @@ export const GPT3_ENGINES: GPT3EngineInterface[] = [
       },
     },
   },
+  {
+    id: 2,
+    name: "text-babbage-001",
+    temperature: {
+      default: 0,
+      option: {
+        floor: 0,
+        ceil: 1,
+        step: 0.01,
+      },
+    },
+    max_tokens: {
+      default: 32,
+      option: {
+        floor: 0,
+        ceil: 2048,
+        step: 1,
+      },
+    },
+    top_p: {
+      default: 1,
+      option: {
+        floor: 0,
+        ceil: 1,
+        step: 0.01,
+      },
+    },
+    frequency_penalty: {
+      default: 0.5,
+      option: {
+        floor: 0,
+        ceil: 2,
+        step: 0.01,
+      },
+    },
+    presence_penalty: {
+      default: 0,
+      option: {
+        floor: 0,
+        ceil: 2,
+        step: 0.01,
+      },
+    },
+  },
+  {
+    id: 3,
+    name: "text-ada-001",
+    temperature: {
+      default: 0,
+      option: {
+        floor: 0,
+        ceil: 1,
+        step: 0.01,
+      },
+    },
+    max_tokens: {
+      default: 32,
+      option: {
+        floor: 0,
+        ceil: 2048,
+        step: 1,
+      },
+    },
+    top_p: {
+      default: 1,
+      option: {
+        floor: 0,
+        ceil: 1,
+        step: 0.01,
+      },
+    },
+    frequency_penalty: {
+      default: 0.5,
+      option: {
+        floor: 0,
+        ceil: 2,
+        step: 0.01,
+      },
+    },
+    presence_penalty: {
+      default: 0,
+      option: {
+        floor: 0,
+        ceil: 2,
+        step: 0.01,
+      },
+    },
+  },
 ];

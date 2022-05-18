@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { LocalStorageService } from "../local-storage.service";
-import { AlertService } from "../alert.service";
+import { LocalStorageService } from "../services/local-storage.service";
+import { AlertService } from "../services/alert.service";
 import { Router } from "@angular/router";
 
 @Component({

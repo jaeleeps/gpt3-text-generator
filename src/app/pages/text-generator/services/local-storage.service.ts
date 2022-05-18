@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { TextGeneratorCompletionArchivedItemInterface } from "./text-generator.model";
+import { TextGeneratorCompletionArchivedItemInterface } from "../text-generator.model";
 import { BehaviorSubject, Observable } from "rxjs";
 
 const GPT3_TEXT_COMPLETION_LS_KEY: string = "gpt3-text-completion-archive-list";
