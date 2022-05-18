@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { Clipboard } from "@angular/cdk/clipboard";
-import { AlertService } from "../../alert.service";
-import { LocalStorageService } from "../../local-storage.service";
+import { AlertService } from "../../services/alert.service";
+import { LocalStorageService } from "../../services/local-storage.service";
 import { TextGeneratorCompletionArchivedItemInterface } from "../../text-generator.model";
 
 @Component({

@@ -7,8 +7,7 @@ import {
   TextGeneratorPromptResponseInferface,
 } from "../text-generator.model";
 import { TextGeneratorRequestService } from "../services/text-generator-request.service";
-import { AlertService } from "../alert.service";
-import {environment} from "../../../../environments/environment";
+import { AlertService } from "../services/alert.service";
 
 @Component({
   selector: "app-prompt",

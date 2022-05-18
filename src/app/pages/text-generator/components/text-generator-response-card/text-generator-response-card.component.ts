@@ -4,8 +4,8 @@ import {
   TextGeneratorCompletionArchivedItemInterface,
   TextGeneratorCompletionInterface,
 } from "../../text-generator.model";
-import { AlertService } from "../../alert.service";
-import { LocalStorageService } from "../../local-storage.service";
+import { AlertService } from "../../services/alert.service";
+import { LocalStorageService } from "../../services/local-storage.service";
 
 @Component({
   selector: "app-text-generator-response-card",
