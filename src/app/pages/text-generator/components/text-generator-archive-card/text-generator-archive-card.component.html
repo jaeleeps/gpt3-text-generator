@@ -1,0 +1,33 @@
+<div class="card">
+  <div class="card-header bg-transparent border-bottom ">
+    {{ data.engine }}
+  </div>
+
+  <div class="card-body">
+    
+    <blockquote class="card-blockquote mb-0">
+      <div class="d-flex align-items-center justify-content-between">
+        <h5 class="mt-0">Prompt:</h5>
+        <h5 class="mt-0"><i class="mdi mdi-content-copy mr-3"
+                            (click)="onClickCopy(data.req.prompt)"></i></h5>
+      </div>
+      <footer class="blockquote-footer font-size-12 mt-0">
+        {{ data.req.prompt }}
+      </footer>
+    </blockquote>
+
+    <blockquote *ngIf="data?.res?.choices && data?.res?.choices[0]" class="card-blockquote mb-0">
+      <div class="d-flex align-items-center justify-content-between">
+        <h5 class="mt-0">Responses:</h5>
+        <h5 class="mt-0"><i class="mdi mdi-content-copy mr-3"
+                            (click)="onClickCopy(data?.res?.choices[0].text)"></i></h5>
+      </div>
+      <footer class="blockquote-footer font-size-12 mt-0">
+        {{ data?.res?.choices[0].text }}
+      </footer>
+    </blockquote>
+
+    <a href="javascript: void(0);" class="card-link" (click)="onClickRemove()">Remove</a>
+
+  </div>
+</div>

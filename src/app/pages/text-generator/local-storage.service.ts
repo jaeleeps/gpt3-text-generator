@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { TextGeneratorCompletionInterface } from "./text-generator.model";
+import { TextGeneratorCompletionArchivedItemInterface } from "./text-generator.model";
 import { BehaviorSubject, Observable } from "rxjs";
 
 const GPT3_TEXT_COMPLETION_LS_KEY: string = "gpt3-text-completion-archive-list";
@@ -8,8 +8,10 @@ const GPT3_TEXT_COMPLETION_LS_KEY: string = "gpt3-text-completion-archive-list";
   providedIn: "root",
 })
 export class LocalStorageService {
-  private _entries: {}[] = [];
-  private _observableList: BehaviorSubject<{}[]> = new BehaviorSubject([]);
+  private _entries: TextGeneratorCompletionArchivedItemInterface[] = [];
+  private _observableList: BehaviorSubject<
+    TextGeneratorCompletionArchivedItemInterface[]
+  > = new BehaviorSubject([]);
 
   constructor() {
     this.initSetting();
@@ -32,14 +34,32 @@ export class LocalStorageService {
     return this._observableList.asObservable();
   }
 
-  appendItem(data: TextGeneratorCompletionInterface) {
-    const id = data.res.id;
-    localStorage.setItem(id, JSON.stringify(data));
-    this._entries.push(data);
+  synchonizeList(): void {
     localStorage.setItem(
       GPT3_TEXT_COMPLETION_LS_KEY,
       JSON.stringify(this._entries)
     );
     this._observableList.next(this._entries);
+  }
+
+  appendItem(data: TextGeneratorCompletionArchivedItemInterface): void {
+    const id = data.res.id;
+    localStorage.setItem(id, JSON.stringify(data));
+    this._entries.push(data);
+    this.synchonizeList();
+  }
+
+  removeItem(id: string): void {
+    try {
+      window.localStorage.removeItem(id);
+      this._entries = this._entries.filter(
+        (item: TextGeneratorCompletionArchivedItemInterface) =>
+          item.res.id !== id
+      );
+      this.synchonizeList();
+      console.log(this._entries);
+    } catch (e) {
+      // TODO: handle err
+    }
   }
 }

@@ -28,9 +28,10 @@ import { NgArrayPipesModule } from "ngx-pipes";
 import { TextGeneratorResponseCardComponent } from './components/text-generator-response-card/text-generator-response-card.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { TextGeneratorHomeComponent } from './text-generator-home/text-generator-home.component';
+import { TextGeneratorArchiveCardComponent } from './components/text-generator-archive-card/text-generator-archive-card.component';
 
 @NgModule({
-  declarations: [PromptComponent, TextGeneratorResponseCardComponent, ArchiveComponent, TextGeneratorHomeComponent],
+  declarations: [PromptComponent, TextGeneratorResponseCardComponent, ArchiveComponent, TextGeneratorHomeComponent, TextGeneratorArchiveCardComponent],
   imports: [
     CommonModule,
     CommonModule,

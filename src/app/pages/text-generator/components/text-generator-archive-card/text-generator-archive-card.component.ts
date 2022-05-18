@@ -1,18 +1,15 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { Clipboard } from "@angular/cdk/clipboard";
-import {
-  TextGeneratorCompletionArchivedItemInterface,
-  TextGeneratorCompletionInterface,
-} from "../../text-generator.model";
 import { AlertService } from "../../alert.service";
 import { LocalStorageService } from "../../local-storage.service";
+import { TextGeneratorCompletionInterface } from "../../text-generator.model";
 
 @Component({
-  selector: "app-text-generator-response-card",
-  templateUrl: "./text-generator-response-card.component.html",
-  styleUrls: ["./text-generator-response-card.component.scss"],
+  selector: "app-text-generator-archive-card",
+  templateUrl: "./text-generator-archive-card.component.html",
+  styleUrls: ["./text-generator-archive-card.component.scss"],
 })
-export class TextGeneratorResponseCardComponent implements OnInit {
+export class TextGeneratorArchiveCardComponent implements OnInit {
   get data(): TextGeneratorCompletionInterface {
     return this._data;
   }
@@ -24,7 +21,7 @@ export class TextGeneratorResponseCardComponent implements OnInit {
 
   private _data: TextGeneratorCompletionInterface;
 
-  isArchived: boolean = false;
+  isArchived: boolean = true;
 
   constructor(
     private clipboard: Clipboard,
@@ -49,16 +46,13 @@ export class TextGeneratorResponseCardComponent implements OnInit {
     attempt();
   }
 
-  onClickArchive(): void {
-    if (this.isArchived) {
+  onClickRemove(): void {
+    if (!this.isArchived) {
       return;
     }
-    const archiveItem: TextGeneratorCompletionArchivedItemInterface = {
-      ...this.data,
-      rating: 0,
-    };
-    this.localStorageService.appendItem(archiveItem);
-    this.isArchived = true;
-    this.alert.timer("Item Archived!", null, "success");
+    const id: string = this.data.res.id;
+    this.localStorageService.removeItem(id);
+    this.isArchived = false;
+    this.alert.timer("Item Removed!", null, "success");
   }
 }

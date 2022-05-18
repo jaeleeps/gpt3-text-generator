@@ -60,3 +60,8 @@ export interface TextGeneratorCompletionListItemInterface
   extends TextGeneratorCompletionInterface {
   archived: boolean;
 }
+
+export interface TextGeneratorCompletionArchivedItemInterface
+  extends TextGeneratorCompletionInterface {
+  rating: number;
+}
