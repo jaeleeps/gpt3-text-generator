@@ -58,9 +58,6 @@ export class PromptComponent implements OnInit {
     this.promptValidationForm.get("textarea").valueChanges.subscribe((val) => {
       this.data.prompt = val;
     });
-
-    console.log("$ENV", $ENV)
-    console.log('environment.gpt3_api_key', environment.gpt3_api_key)
   }
 
   get form() {

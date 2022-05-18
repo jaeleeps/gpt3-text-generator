@@ -1,7 +1,10 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { TextGeneratorHomeComponent } from "./text-generator/text-generator-home/text-generator-home.component";
 
 const routes: Routes = [
+  { path: "", redirectTo: "text-generator-home" },
+  { path: "text-generator-home", component: TextGeneratorHomeComponent },
   {
     path: "text-generator",
     loadChildren: () =>
