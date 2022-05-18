@@ -26,9 +26,10 @@ import { NgSelectModule } from "@ng-select/ng-select";
 import { Ng5SliderModule } from "ng5-slider";
 import { NgArrayPipesModule } from "ngx-pipes";
 import { TextGeneratorResponseCardComponent } from './components/text-generator-response-card/text-generator-response-card.component';
+import { ArchiveComponent } from './archive/archive.component';
 
 @NgModule({
-  declarations: [PromptComponent, TextGeneratorResponseCardComponent],
+  declarations: [PromptComponent, TextGeneratorResponseCardComponent, ArchiveComponent],
   imports: [
     CommonModule,
     CommonModule,
