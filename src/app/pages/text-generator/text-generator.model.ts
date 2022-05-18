@@ -34,14 +34,6 @@ export interface TextGeneratorPromptRequestInferface {
   presence_penalty: number;
 }
 
-/**
- * {
- *       "text": "\n\nThis is a test",
- *       "index": 0,
- *       "logprobs": null,
- *       "finish_reason": "length"
- *     }
- */
 export interface TextGeneratorChoiceInterface {
   text: string;
   index: number;
@@ -55,4 +47,16 @@ export interface TextGeneratorPromptResponseInferface {
   model: string; // "text-curie-001"
   object: string; //"text_completion"
   choices: TextGeneratorChoiceInterface[];
+}
+
+export interface TextGeneratorCompletionInterface {
+  engine: string;
+  req: TextGeneratorPromptRequestInferface;
+  res: TextGeneratorPromptResponseInferface;
+  received_at: Date;
+}
+
+export interface TextGeneratorCompletionListItemInterface
+  extends TextGeneratorCompletionInterface {
+  archived: boolean;
 }

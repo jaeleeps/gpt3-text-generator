@@ -7,6 +7,7 @@ import {
   TextGeneratorPromptResponseInferface,
 } from "../text-generator.model";
 import { TextGeneratorRequestService } from "../services/text-generator-request.service";
+import { AlertService } from "../alert.service";
 
 @Component({
   selector: "app-prompt",
@@ -36,8 +37,9 @@ export class PromptComponent implements OnInit {
   private _responseList = [];
 
   constructor(
-    public formBuilder: FormBuilder,
-    public textGeneratorRequestService: TextGeneratorRequestService
+    private formBuilder: FormBuilder,
+    private textGeneratorRequestService: TextGeneratorRequestService,
+    private alert: AlertService
   ) {}
 
   ngOnInit(): void {
@@ -86,14 +88,17 @@ export class PromptComponent implements OnInit {
   submitPrompt() {
     this.promptSubmit = true;
     if (this.promptValidationForm.status === "VALID") {
+      const data: TextGeneratorPromptRequestInferface = { ...this.data };
       this.textGeneratorRequestService
-        .getGPT3CompletionResponse(this.selectedEngine.name, this.data)
+        .getGPT3CompletionResponse(this.selectedEngine.name, data)
         .toPromise()
         .then((res: TextGeneratorPromptResponseInferface) => {
           if (res) {
-            this.addResponse(this.selectedEngine.name, this.data, res);
+            console.log(res);
+            this.addResponse(this.selectedEngine.name, data, res);
+            this.alert.timer("Text Generated!", null, "success");
           } else {
-            // TODO: ERR HANDLING
+            this.alert.timer("Text Completion Failed!", null, "success");
           }
         });
     }
@@ -109,9 +114,10 @@ export class PromptComponent implements OnInit {
     responseData: TextGeneratorPromptResponseInferface
   ): void {
     this.list.push({
-      engine,
-      requestData,
-      responseData,
+      engine: engine,
+      req: requestData,
+      res: responseData,
+      received_at: new Date(),
     });
   }
 }

@@ -24,9 +24,11 @@ import { PromptComponent } from "./prompt/prompt.component";
 import { TextGeneratorRoutingModule } from "./text-generator-routing.module";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { Ng5SliderModule } from "ng5-slider";
+import { NgArrayPipesModule } from "ngx-pipes";
+import { TextGeneratorResponseCardComponent } from './components/text-generator-response-card/text-generator-response-card.component';
 
 @NgModule({
-  declarations: [PromptComponent],
+  declarations: [PromptComponent, TextGeneratorResponseCardComponent],
   imports: [
     CommonModule,
     CommonModule,
@@ -53,6 +55,7 @@ import { Ng5SliderModule } from "ng5-slider";
     TextGeneratorRoutingModule,
     NgSelectModule,
     Ng5SliderModule,
+    NgArrayPipesModule,
   ],
 })
 export class TextGeneratorModule {}
