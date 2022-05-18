@@ -1,14 +1,15 @@
 export const environment = {
   production: true,
-  defaultauth: 'fackbackend',
+  defaultauth: "fackbackend",
   firebaseConfig: {
-    apiKey: '',
-    authDomain: '',
-    databaseURL: '',
-    projectId: '',
-    storageBucket: '',
-    messagingSenderId: '',
-    appId: '',
-    measurementId: ''
-  }
+    apiKey: "",
+    authDomain: "",
+    databaseURL: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: "",
+    measurementId: "",
+  },
+  gpt3_api_key: process.env.GPT3_API_KEY,
 };

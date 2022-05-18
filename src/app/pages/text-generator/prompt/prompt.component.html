@@ -1,0 +1,119 @@
+<div class="container-fluid">
+  <!-- start page title -->
+  <app-page-title title="Prompt" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+  <!-- end page title -->
+
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Prompt</h4>
+          <p class="card-title-desc">
+            Prompt Description
+          </p>
+          <form (ngSubmit)="submitPrompt()" [formGroup]="promptValidationForm">
+            <div class="mb-3">
+              <label>AI Engine</label>
+              <div>
+                <ng-select [items]="engines" formControlName="engine"
+                           bindValue="id" bindLabel="name"
+                           [ngClass]="{'is-invalid': promptSubmit && form.engine.errors}"
+                           (change)="onChangeEngine($event)"
+                           required
+                ></ng-select>
+                <div *ngIf="promptSubmit && form.engine.errors" class="invalid-feedback">
+                  <span *ngIf="form.engine.errors.required">This value is required.</span>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="form.engine && !form.engine.errors" class="mb-3">
+              <div class="row">
+                <div class="col-md-12">
+                  <h5 class="font-size-14">Max Tokens</h5>
+                  <p class="card-title-desc">
+                    The <code>max_tokens</code> parameter sets an upper bound on how many tokens the API will return.
+                  </p>
+                  <ng5-slider
+                    [(value)]="data.max_tokens"
+                    [options]="selectedEngine.max_tokens.option"></ng5-slider>
+                </div>
+
+                <div class="col-md-6">
+                  <h5 class="font-size-14">Temperature</h5>
+                  <p class="card-title-desc"></p>
+                  <ng5-slider
+                    [(value)]="data.temperature"
+                    [options]="selectedEngine.temperature.option"></ng5-slider>
+                </div>
+
+                <div class="col-md-6">
+                  <h5 class="font-size-14">Top P</h5>
+                  <p class="card-title-desc"></p>
+                  <ng5-slider
+                    [(value)]="data.top_p"
+                    [options]="selectedEngine.top_p.option"></ng5-slider>
+                </div>
+
+                <div class="col-md-6">
+                  <h5 class="font-size-14">Frequency Penalty</h5>
+                  <p class="card-title-desc"></p>
+                  <ng5-slider
+                    [(value)]="data.frequency_penalty"
+                    [options]="selectedEngine.frequency_penalty.option"></ng5-slider>
+                </div>
+
+                <div class="col-md-6">
+                  <h5 class="font-size-14">Presence Penalty</h5>
+                  <p class="card-title-desc"></p>
+                  <ng5-slider
+                    [(value)]="data.presence_penalty"
+                    [options]="selectedEngine.presence_penalty.option"></ng5-slider>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Prompt</label>
+              <div>
+                <textarea formControlName="textarea" class="form-control" rows="5"
+                          [ngClass]="{'is-invalid': promptSubmit && form.textarea.errors}"></textarea>
+                <div *ngIf="promptSubmit && form.textarea.errors" class="invalid-feedback">
+                  <span *ngIf="form.textarea.errors.required">This value is required.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex flex-wrap gap-2">
+              <button type="submit" class="btn btn-primary waves-effect waves-light">
+                Submit
+              </button>
+              <button type="reset" class="btn btn-secondary waves-effect">
+                Reset
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Responses</h4>
+          <p class="card-title-desc">
+            Responses Description
+          </p>
+        </div>
+
+        <div class="card-body">
+          <ng-container *ngFor="let cardData of list?.slice().reverse()">
+            <app-text-generator-response-card [data]="cardData"></app-text-generator-response-card>
+          </ng-container>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

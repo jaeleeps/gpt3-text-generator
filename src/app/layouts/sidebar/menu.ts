@@ -10,6 +10,7 @@ export const MENU: MenuItem[] = [
     id: 1100,
     label: "MENUITEMS.TEXT_GENERATOR_PROMPT.TEXT",
     icon: "bx-edit-alt",
+    link: "/text-generator/prompt",
   },
   {
     id: 1200,
