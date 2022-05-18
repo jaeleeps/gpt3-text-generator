@@ -1,18 +1,22 @@
 import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
+import { RouterModule, Routes } from "@angular/router";
 
 import { CalendarComponent } from "./calendar/calendar.component";
 import { ChatComponent } from "./chat/chat.component";
 import { DefaultComponent } from "./dashboards/default/default.component";
 import { FilemanagerComponent } from "./filemanager/filemanager.component";
+import { TextGeneratorHomeComponent } from "./text-generator/text-generator-home/text-generator-home.component";
 
 const routes: Routes = [
-  { path: "", redirectTo: "dashboard" },
+  // { path: "", redirectTo: "dashboard" },
+  { path: "", redirectTo: "text-generator-home" },
 
   { path: "dashboard", component: DefaultComponent },
   { path: "calendar", component: CalendarComponent },
   { path: "chat", component: ChatComponent },
   { path: "filemanager", component: FilemanagerComponent },
+
+  { path: "text-generator-home", component: TextGeneratorHomeComponent },
 
   {
     path: "text-generator",

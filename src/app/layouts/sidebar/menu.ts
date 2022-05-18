@@ -16,6 +16,7 @@ export const MENU: MenuItem[] = [
     id: 1200,
     label: "MENUITEMS.TEXT_GENERATOR_ARCHIVE.TEXT",
     icon: "bx-archive",
+    link: "/text-generator/archive"
   },
   {
     id: 80,
